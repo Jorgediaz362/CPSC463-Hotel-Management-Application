@@ -1,25 +1,87 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    //enable php to display any error
+    ini_set('display_errors','1');
+    
+    //Student Name: Hoanh Vo
+    //http://ecs.fullerton.edu/~cs431s24/hotel-app/
+    //access database: ecs.fullerton.edu/~cs431s24/phpMyAdmin/
+
+
+
+    //function executes the query ===================================================================================
+    //the function open conection to database and run the parameter query
+    function executeQuery($query)
+    {
+        
+    //==insert into the database======
+    //connecting to the database ============================
+        @$db = new mysqli('mariadb', 'cs431s24', 'eiY2ahm1', 'cs431s24');
+
+        if (mysqli_connect_errno()) {
+            echo "<p>Error: Could not connect to database.<br/>
+                Please try again later.</p>";
+            exit;
+        }
+
+        $result = mysqli_query($db, $query);
+        echo "Query: ran successfully!";
+        $db->close();
+        return $result;  
+    }
+
+
+    //get meta data into multi--array========================
+    function tranfertoArray($metadata)
+    {
+        //try catch the case that database is empty
+        try
+        {
+            $allPhotoInfoCheck = mysqli_num_rows($metadata);
+            if($allPhotoInfoCheck <= 0 )
+            {
+            throw new Exception("The database is empty!");
+            }
+        }
+        catch(Exception $e)
+        {
+        echo 'Message: '.$e->getMessage();
+        // exit; When the data is empty -> print out the mesage and keep running the scrip 
+        }
+        
+        $i = 0; //for inserting into multiarray
+        //mysqli_fetch_assoc get data in each row and insert into array $row
+        //$row['name']; $row['date']
+        while($row = mysqli_fetch_assoc($metadata))
+        {
+        //create a-combine-array of the photo and the info array
+        $multArrayRooms[$i] = $row; //store all the data from database
+        $i++;
+        } 
+        return  $multArrayRooms;                                              
+    }
+
+?>
+
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-    <!-- //http://ecs.fullerton.edu/~cs431s24/hotel-app/
- //access database: ecs.fullerton.edu/~cs431s24/phpMyAdmin/-->
-    <meta charset="utf-8" />
+      <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ABC Hotel Management Application</title>
-    <!-- Bootstrap Styles-->
+    <title>ABC Hotel Management Application : All Rooms</title>
+	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FontAwesome Styles-->
+     <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- Morris Chart Styles-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    <!-- Custom Styles-->
+     <!-- Morris Chart Styles-->
+   
+        <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
-    <!-- Google Fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> 
-     
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
-
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -244,37 +306,29 @@
         </nav>
         <!--/. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
-		<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="all-rooms.php"><i class="fa fa-desktop"></i> Show All Rooms</a>
+                        <a href="all-rooms.php" class="active-menu"><i class="fa fa-desktop"></i> Show All Rooms</a>
                     </li>
-                    <li>
+					<li>
                         <a href="rooms7days.html"><i class="fa fa-table"></i> Rooms Next 7 days</a>
                     </li>
                     <li>
-                        <a href="ui-elements.html"><i class="fa fa-desktop"></i> UI Elements</a>
-                    </li>					
+                        <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
+                    </li>
+                    
                     <li>
-                        <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Capability 3</a>
-                    </li>                                      
-                    <li>
-                        <a href="form.html"><i class="fa fa-edit"></i> Capability 5 </a>
+                        <a href="table.html" ><i class="fa fa-table"></i> Responsive Tables</a>
                     </li>
                     <li>
-                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Capability 6</a>
+                        <a href="form.html"><i class="fa fa-edit"></i> Forms </a>
                     </li>
-                    <li>
-                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Capability 7</a>
-                    </li>
-                    <li>
-                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Capability 8</a>
-                    </li>
+
 
                     <li>
                         <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
@@ -303,334 +357,130 @@
                             </li>
                         </ul>
                     </li>
-                    
+                    <li>
+                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Empty Page</a>
+                    </li>
                 </ul>
 
             </div>
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" >
             <div id="page-inner">
-
-
-                <div class="row">
+			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Dashboard <small>Hotel Overview</small>
+                            All Hotel Rooms <small>with status </small>
                         </h1>
-						<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
-</ol>
                     </div>
+                </div> 
+                 <!-- /. ROW  -->
+               
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             Rooms Tables
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Room Number</th>
+                                            <th>Room Type</th>
+                                            <th>Available</th>
+                                            <th>Status</th>
+                                            <th>Rate Per Day</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <?php 
+                                             //=============================Read the database ========//get photo information====================
+                                            $select_sql= "SELECT * FROM Rooms;";
+                                            $allRooms = executeQuery($select_sql); //execute the query statement
+                                            $multArrayRooms =  tranfertoArray( $allRooms); //put all metadata into multi array
+                                                              
+                                        ?>
+                                       
+                                       <tr class="gradeX">
+                                            <td>123</td>
+                                            <td>King</td>
+                                            <td>Yes</td>
+                                            <td class="center">-</td>
+                                            <td class="center">39.89</td>
+                                        </tr>
+                                        <tr class="gradeX">
+                                            <td>339</td>
+                                            <td>Double Queen</td>
+                                            <td>No</td>
+                                            <td class="center">Dirty</td>
+                                            <td class="center">55.55</td>
+                                        </tr>
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
                 </div>
-				
-				
-                <!-- /. ROW  -->
-
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-green green">
-                            <div class="panel-left pull-left green">
-                                <i class="fa fa-eye fa-5x"></i>
-                                
-                            </div>
-                            <div class="panel-right">
-								<h3>8,457</h3>
-                               <strong> Daily Visits</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-blue">
-                              <div class="panel-left pull-left blue">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
-								</div>
-                                
-                            <div class="panel-right">
-							<h3>52,160 </h3>
-                               <strong> Sales</strong>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red">
-                            <div class="panel-left pull-left red">
-                                <i class="fa fa fa-comments fa-5x"></i>
-                               
-                            </div>
-                            <div class="panel-right">
-							 <h3>15,823 </h3>
-                               <strong> Comments </strong>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-brown">
-                            <div class="panel-left pull-left brown">
-                                <i class="fa fa-users fa-5x"></i>
-                                
-                            </div>
-                            <div class="panel-right">
-							<h3>36,752 </h3>
-                             <strong>No. of Visits</strong>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				
-				<div class="row">
-				<div class="col-md-5">
-						<div class="panel panel-default">
-						<div class="panel-heading">
-							Area Chart
-						</div>
-						<div class="panel-body">
-							<div id="morris-area-chart"></div>
-						</div>
-					</div>   
-					</div>		
-					
-						<div class="col-md-7">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							Line Chart
-						</div>
-						<div class="panel-body">
-							<div id="morris-line-chart"></div>
-						</div>
-					</div>  
-					</div>
-					
-				</div> 
-			 
-				
-			
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Customers</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Sales</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Profits</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>No. of Visits</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-			
-				
-                <div class="row">
-                    <div class="col-md-9 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Bar Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Donut Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-				<div class="row">
-				<div class="col-md-12">
-				
-					</div>		
-				</div> 	
-                <!-- /. ROW  -->
-
-	   
-				
-				
-				
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Tasks Panel
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-group">
-
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">7 minutes ago</span>
-                                        <i class="fa fa-fw fa-comment"></i> Commented on a post
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">16 minutes ago</span>
-                                        <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">36 minutes ago</span>
-                                        <i class="fa fa-fw fa-globe"></i> Invoice 653 has paid
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1 hour ago</span>
-                                        <i class="fa fa-fw fa-user"></i> A new user has been added
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">1.23 hour ago</span>
-                                        <i class="fa fa-fw fa-user"></i> A new user has added
-                                    </a>
-                                    <a href="#" class="list-group-item">
-                                        <span class="badge">yesterday</span>
-                                        <i class="fa fa-fw fa-globe"></i> Saved the world
-                                    </a>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">More Tasks <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-8 col-sm-12 col-xs-12">
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Responsive Table Example
-                            </div> 
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>S No.</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>User Name</th>
-                                                <th>Email ID.</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>John</td>
-                                                <td>Doe</td>
-                                                <td>John15482</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Kimsila</td>
-                                                <td>Marriye</td>
-                                                <td>Kim1425</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Rossye</td>
-                                                <td>Nermal</td>
-                                                <td>Rossy1245</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Richard</td>
-                                                <td>Orieal</td>
-                                                <td>Rich5685</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Jacob</td>
-                                                <td>Hielsar</td>
-                                                <td>Jac4587</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Wrapel</td>
-                                                <td>Dere</td>
-                                                <td>Wrap4585</td>
-                                                <td>name@site.com</td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- /. ROW  -->
-			
-		
-				<footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p>
-				
-        
-				</footer>
             </div>
-            <!-- /. PAGE INNER  -->
+                <!-- /. ROW  -->
+            <div class="row">
+               
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+                <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-6">
+                     
+                </div>
+                <div class="col-md-6">
+                   
+                </div>
+            </div>
+                <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-6">
+                   -->
+                </div>
+                <div class="col-md-6">
+                    
+                </div>
+            </div>
+                <!-- /. ROW  -->
         </div>
-        <!-- /. PAGE WRAPPER  -->
+               <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
     </div>
-    <!-- /. WRAPPER  -->
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- Bootstrap Js -->
+      <!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
-	 
     <!-- Metis Menu Js -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-    <!-- Morris Chart Js -->
-    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js"></script>
-	
-	
-	<script src="assets/js/easypiechart.js"></script>
-	<script src="assets/js/easypiechart-data.js"></script>
-	
-	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
-	
-    <!-- Custom Js -->
+     <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+         <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
- 
-
+    
+   
 </body>
-
 </html>
