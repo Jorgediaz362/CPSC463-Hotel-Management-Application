@@ -1,7 +1,13 @@
 ﻿
 
 <?php
+    //Connecting database, and render queried data to webpage
     require_once 'functions.php';
+
+    $currentDay = date("Y-m-d"); //format: year month date
+    echo "Today is ".$currentDay;
+    $week_first_day = date('Y-m-d',strtotime("-".(0-$week));
+    $week_last_day = date('Y-m-d',strtotime("+".(6-$week));
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -329,7 +335,13 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Room Number</th>
+                                            <?php
+                                                for($i =0; $i <=6;$i++)
+                                                {
+                                                    echo '<th>Today date</th>'
+                                                }
+                                            ?>
+                                            <th>Today date</th>
                                             <th>Room Type</th>
                                             <th>Available</th>
                                             <th>Status</th>
