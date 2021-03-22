@@ -316,7 +316,7 @@
                         <a href="all-rooms.php" class="active-menu"><i class="fa fa-desktop"></i> Show All Rooms</a>
                     </li>
 					<li>
-                        <a href="rooms7days.html"><i class="fa fa-table"></i> Rooms Next 7 days</a>
+                        <a href="rooms7days.php"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
@@ -445,17 +445,7 @@
                 <div class="col-md-6">
                    
                 </div>
-            </div>
-                <!-- /. ROW  -->
-            <div class="row">
-                <div class="col-md-6">
-                   -->
-                </div>
-                <div class="col-md-6">
-                    
-                </div>
-            </div>
-                <!-- /. ROW  -->
+            </div>         
         </div>
                <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
     </div>
