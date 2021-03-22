@@ -4,10 +4,10 @@
     //Connecting database, and render queried data to webpage
     require_once 'functions.php';
 
-    $currentDay = date("Y-m-d"); //format: year month date
-    echo "Today is ".$currentDay;
-    $week_first_day = date('Y-m-d',strtotime("-".(0-$week));
-    $week_last_day = date('Y-m-d',strtotime("+".(6-$week));
+    //variables for printout next 7 days 
+    $week = 0;
+    $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days"));
+    $week_last_date = date('Y-m-d',strtotime("+".(6-$week)." days"));
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -336,16 +336,13 @@
                                     <thead>
                                         <tr>
                                             <?php
+                                                //print out the next 7 days
                                                 for($i =0; $i <=6;$i++)
                                                 {
-                                                    echo '<th>Today date</th>'
+                                                    $temp_date = date('Y-m-d',strtotime($week_first_date."+".$i." days"));
+                                                    echo '<th>'.date('D',strtotime($temp_date)).'</th>';
                                                 }
-                                            ?>
-                                            <th>Today date</th>
-                                            <th>Room Type</th>
-                                            <th>Available</th>
-                                            <th>Status</th>
-                                            <th>Rate Per Day</th>
+                                            ?>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
