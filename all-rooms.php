@@ -342,7 +342,7 @@
                                             $select_sql= "SELECT * FROM Rooms;";
                                             $allRooms = executeQuery($select_sql); //execute the query statement
                                             $multArrayRooms =  tranfertoArray( $allRooms); //put all metadata into multi array
-                                            render_array(  $multArrayRooms );                 
+                                            render_room_array(  $multArrayRooms );                 
                                         ?>
                                        
                                        <tr class="gradeX">

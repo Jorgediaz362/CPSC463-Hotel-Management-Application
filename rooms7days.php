@@ -350,11 +350,8 @@
 
                                         <?php 
                                               //=================query the datbase get the reservation with the current day ====================
-                                              $week = 0;
-                                              $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days")); 
-                                              $week_last_date = date('Y-m-d',strtotime("+".(6-$week)." days"));      
-                                             
-                                              $select_sql= "SELECT * FROM Reservations WHERE  $week_first_date = checkinDate;";
+                                              // ????????????       use left join and display to  webpage                                              
+                                              $select_sql= "SELECT * FROM Reservations WHERE  '$week_first_date' = checkinDate";
                                               $allRooms = executeQuery($select_sql); //execute the query statement
                                               $multArrayRooms =  tranfertoArray( $allRooms); //put all metadata into multi array
                                               render_array(  $multArrayRooms );        
