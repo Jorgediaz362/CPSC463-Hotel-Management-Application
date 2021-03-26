@@ -5,9 +5,10 @@
     require_once 'functions.php';
 
     //variables for printout next 7 days 
+    
     $week = 0;
-    $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days"));
-    $week_last_date = date('Y-m-d',strtotime("+".(6-$week)." days"));
+    $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days")); 
+    $week_last_date = date('Y-m-d',strtotime("+".(6-$week)." days"));  
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -346,12 +347,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        <?php 
+                                              //=================query the datbase get the reservation with the current day ====================
+                                              $week = 0;
+                                              $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days")); 
+                                              $week_last_date = date('Y-m-d',strtotime("+".(6-$week)." days"));      
+                                             
+                                              $select_sql= "SELECT * FROM Reservations WHERE  $week_first_date = checkinDate;";
+                                              $allRooms = executeQuery($select_sql); //execute the query statement
+                                              $multArrayRooms =  tranfertoArray( $allRooms); //put all metadata into multi array
+                                              render_array(  $multArrayRooms );        
+                                            
+                                        ?>
                                         <tr class="odd gradeX">
                                             <td>123</td>
                                             <td>King</td>
                                             <td>Yes</td>
                                             <td class="center">-</td>
                                             <td class="center">39.89</td>
+                                            <?php  echo '  <td>'.$currentDate.'</td> '  ?>
+                                            <?php  echo '  <td>'.$week_first_date.'</td> '  ?>
+                                            
                                         </tr>
                                         <tr class="even gradeC">
                                             <td>339</td>
@@ -359,6 +376,7 @@
                                             <td>No</td>
                                             <td class="center">Dirty</td>
                                             <td class="center">55.55</td>
+                                            <?php  echo '  <td>'.$week_last_date.'</td> '  ?>
                                         </tr>
                                        
                                     </tbody>

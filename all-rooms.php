@@ -338,11 +338,11 @@
                                     <tbody>
                                         
                                         <?php 
-                                             //=============================Read the database ========//get photo information====================
+                                             //=============================Read the database ========//get  information====================
                                             $select_sql= "SELECT * FROM Rooms;";
                                             $allRooms = executeQuery($select_sql); //execute the query statement
                                             $multArrayRooms =  tranfertoArray( $allRooms); //put all metadata into multi array
-                                                              
+                                            render_array(  $multArrayRooms );                 
                                         ?>
                                        
                                        <tr class="gradeX">
