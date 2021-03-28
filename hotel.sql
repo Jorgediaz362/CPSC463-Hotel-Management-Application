@@ -1,3 +1,5 @@
+
+/*ecs.fullerton.edu/~cs431s24/phpMyAdmin  */
 /* child table must be dropped first   */
 DROP TABLE IF EXISTS DirtyRooms;
 DROP TABLE IF EXISTS Guests;
