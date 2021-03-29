@@ -310,7 +310,7 @@
 			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            All Hotel Rooms <small>with status </small>
+                            All Hotel Rooms <small>with their current status </small>
                         </h1>
                     </div>
                 </div> 
@@ -342,7 +342,7 @@
                                             $select_sql= "SELECT * FROM Rooms;";
                                             $allRooms = executeQuery($select_sql); //execute the query statement
                                             $multArrayRooms =  tranfertoArray( $allRooms); //put all metadata into multi array
-                                            render_room_array(  $multArrayRooms );                 
+                                            render_room_array($multArrayRooms);                 
                                         ?>
                                        
                                        <tr class="gradeX">

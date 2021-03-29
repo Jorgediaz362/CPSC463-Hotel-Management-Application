@@ -318,7 +318,7 @@
 			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Hotel Rooms <small>with status</small>
+                            Hotel Rooms <small>who staying in the room for next 7 days </small>
                         </h1>
                     </div>
                 </div> 
@@ -336,6 +336,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
+                                            <th>Room</th>
                                             <?php
                                                 //print out the next 7 days
                                                 for($i =0; $i <=6;$i++)
@@ -349,32 +350,20 @@
                                     <tbody>
 
                                         <?php 
-                                              //=================query the datbase get the reservation with the current day ====================
+                                              //=================query the datbase get the reservation with range within next 7 days ====================
                                               // ????????????       use left join and display to  webpage                                              
-                                              $select_sql= "SELECT * FROM Reservations WHERE  '$week_first_date' = checkinDate";
+                                              $select_sql= "SELECT r.roomNumber, s.firstName, s.checkinDate, s.checkoutDate
+                                                            FROM Rooms AS r
+                                                            LEFT JOIN (SELECT g1.firstName, r1.roomNumber,r1.checkinDate, r1.checkoutDate 
+                                                                        FROM Reservations AS r1
+                                                                        INNER JOIN Guests AS g1 ON r1.guestID = g1.guestID  ) AS s
+                                                            ON r.roomNumber = s.roomNumber 
+                                                            ";
                                               $allRooms = executeQuery($select_sql); //execute the query statement
                                               $multArrayRooms =  tranfertoArray( $allRooms); //put all metadata into multi array
-                                              render_array(  $multArrayRooms );        
+                                              render_7dayroom_array(  $multArrayRooms );        
                                             
-                                        ?>
-                                        <tr class="odd gradeX">
-                                            <td>123</td>
-                                            <td>King</td>
-                                            <td>Yes</td>
-                                            <td class="center">-</td>
-                                            <td class="center">39.89</td>
-                                            <?php  echo '  <td>'.$currentDate.'</td> '  ?>
-                                            <?php  echo '  <td>'.$week_first_date.'</td> '  ?>
-                                            
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>339</td>
-                                            <td>Double Queen</td>
-                                            <td>No</td>
-                                            <td class="center">Dirty</td>
-                                            <td class="center">55.55</td>
-                                            <?php  echo '  <td>'.$week_last_date.'</td> '  ?>
-                                        </tr>
+                                        ?>                                       
                                        
                                     </tbody>
                                 </table>
