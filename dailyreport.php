@@ -262,10 +262,10 @@
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Capability 3</a>
                     </li>                                      
                     <li>
-                        <a href="form.html"><i class="fa fa-edit"></i> Capability 5 </a>
+                        <a href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
-                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Capability 6</a>
+                        <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest Stay</a>
                     </li>
                     <li>
                         <a href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
@@ -301,7 +301,7 @@
                             <div class="panel panel-primary text-center no-boder bg-color-blue">
                                 <div class="panel-left pull-left blue"> </div>
                                 <div class="panel-right"> 
-                                    <h3>63</h3>
+                                    <h3>2</h3>
                                     <strong> Number of Guests </strong>
                                 </div>
                             </div>
@@ -327,6 +327,89 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                   <thead>
+                                       <tr>
+                                           <th>
+                                                Room Number
+                                           </th>
+                                           <th>
+                                               Guest Name
+                                           </th>
+                                           <th>
+                                               Date In
+                                           </th>
+                                           <th>
+                                               Date Out
+                                           </th>
+                                           <th>
+                                               Amount Paid
+                                           </th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       <tr>
+                                           <td>
+                                               125
+                                           </td>
+                                           <td>
+                                               Jorge Diaz
+                                           </td>
+                                            <td>
+                                               April 2, 2021
+                                           </td>
+                                            <td>
+                                               April 9, 2021
+                                           </td>
+                                            <td>
+                                               $ 300.04
+                                           </td>
+                                       </tr>
+                                       <tr>
+                                           <td>
+                                               137
+                                           </td>
+                                           <td>
+                                               Jorge Ruben
+                                           </td>
+                                            <td>
+                                               April 9, 2021
+                                           </td>
+                                            <td>
+                                               
+                                           </td>
+                                            <td>
+                                               $ 55.39
+                                           </td>
+                                       </tr>
+                                   </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                   <thead>
+                                       <tr>
+                                           <th>Total $ Today</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       <tr>
+                                           <td>$ 355.43</td>
+                                        </tr>
+                                   </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
                     </div>
 
                     <div>

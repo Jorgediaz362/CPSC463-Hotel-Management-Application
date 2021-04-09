@@ -260,10 +260,10 @@
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Capability 3</a>
                     </li>                                      
                     <li>
-                        <a href="form.html"><i class="fa fa-edit"></i> Capability 5 </a>
+                        <a href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
-                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Capability 6</a>
+                        <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest Stay</a>
                     </li>
                     <li>
                         <a class="active-menu" href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
@@ -315,22 +315,84 @@
                     <p></p>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                             Guests
+                             
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>Jorge Diaz</td>
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>Jorge Masvidal</td>
-                                        </tr>
-                                       
-                                    </tbody>
+                                   <thead>
+                                       <tr>
+                                           <th>
+                                               First Name
+                                           </th>
+                                           <th>
+                                               Last Name
+                                           </th>
+                                           <th>
+                                               Room Number
+                                           </th>
+                                           <th>
+                                               Phone Number
+                                           </th>
+                                           <th>
+                                               Street Address
+                                           </th>
+                                           <th>
+                                               Check In Date
+                                           </th>
+                                           <th>
+                                               Checkout Date
+                                           </th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       <tr>
+                                           <td>
+                                               Jorge
+                                           </td>
+                                           <td>
+                                               Diaz
+                                           </td>
+                                            <td>
+                                               125
+                                           </td>
+                                            <td>
+                                               951-245-6789
+                                           </td>
+                                            <td>
+                                               1234 Street Drive
+                                           </td>
+                                           <td>
+                                               May 21, 2021
+                                           </td>
+                                           <td>
+                                               May 23, 2021
+                                           </td>
+                                       </tr>
+                                       <tr>
+                                           <td>
+                                               Mark
+                                           </td>
+                                           <td>
+                                               Ruben
+                                           </td>
+                                            <td>
+                                               137
+                                           </td>
+                                            <td>
+                                               951-346-9876
+                                           </td>
+                                            <td>
+                                               2348 Other Street Ave.
+                                           </td>
+                                           <td>
+                                               April 01, 2021
+                                           </td>
+                                           <td>
+                                               April 08, 2021
+                                           </td>
+                                       </tr>
+                                   </tbody>
                                 </table>
                             </div>
                             
