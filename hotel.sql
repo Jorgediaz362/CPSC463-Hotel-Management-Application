@@ -57,15 +57,21 @@ CREATE TABLE Reservations
 );
 
 INSERT INTO Guests VALUES
-  (1, 'Julie','Smith', 'CA1234','714-999-9999','email@gmail.com','1122 Dale St, Garden Grove, CA','SH3234'),
-  (2, 'Bradley','Vo', 'ZA343','714-999-9999','email@gmail.com','1122 Dale St, Garden Grove, CA','SH3234');
+  (1, 'Julie','Smith', 'CA1234','714-999-9999','email@gmail.com','1122 Dale St, Garden Grove, CA','SH32314'),
+  (2, 'Bradley','Vo', 'ZA343','714-555-5555','bradleyvo@gmail.com','1122 Dale St, Garden Grove, ZA','BD2394'),
+  (3, 'Van','Le', 'AZ543','714-333-3333','vananhle@gmail.com','1122 Dale St, Garden Grove, AZA','CF5334'),
+  (4, 'David','Dang', 'TX765','714-222-2222','daviddang@gmail.com','1122 Dale St, Garden Grove, TX','TY3334');
  
 
 INSERT INTO Rooms VALUES
   ('B342', 'King','Yes',NULL,99.99 ),
-  ('C22', 'Queen','Yes',NULL,99.99 );
+  ('C22', 'Queen','Yes',NULL,99.99 ),
+   ('B300', 'Suite','Yes',NULL,99.99 ),
+  ('C21', 'Double Queen','Yes',NULL,99.99 );
 
 /* NULL so it can auto generate and increase the id   */
 INSERT INTO Reservations VALUES
-  (1, 'B342','2021-03-04', '2021-03-12','2021-03-01',77.56),
-  (2, 'C22','2021-03-26', '2021-03-30','2021-03-01',77.56);
+  (1, 'B342','2021-04-09', '2021-04-12','2021-03-01',88.56),
+  (2, 'C22','2021-04-12', '2021-04-30','2021-03-06',77.56),
+  (3, 'B300','2021-04-10', '2021-04-15','2021-03-07',76.56),
+  (4, 'C21','2021-04-13', '2021-04-30','2021-03-23',77.56);

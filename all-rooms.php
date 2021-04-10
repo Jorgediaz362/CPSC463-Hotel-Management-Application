@@ -346,18 +346,18 @@
                                         ?>
                                        
                                        <tr class="gradeX">
-                                            <td>123</td>
+                                            <td>A123</td>
                                             <td>King</td>
-                                            <td>Yes</td>
-                                            <td class="center">-</td>
-                                            <td class="center">39.89</td>
+                                            <td>No</td>
+                                            <td class="center">Occupied</td>
+                                            <td class="center">$39.89</td>
                                         </tr>
                                         <tr class="gradeX">
-                                            <td>339</td>
+                                            <td>A339</td>
                                             <td>Double Queen</td>
                                             <td>No</td>
                                             <td class="center">Dirty</td>
-                                            <td class="center">55.55</td>
+                                            <td class="center">$55.55</td>
                                         </tr>
                                       
                                     </tbody>
