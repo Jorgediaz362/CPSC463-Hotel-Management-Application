@@ -1,7 +1,8 @@
 # CPSC462-Project2
 Team members:
 
-Hoanh Vo
+Hoanh Vo hvo123@csu.fullerton.edu
+Phillip Presuel
 
 Jorge Diaz jorgediaz@csu.fullerton.edu
 
