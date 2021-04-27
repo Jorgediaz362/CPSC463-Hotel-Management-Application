@@ -15,7 +15,7 @@
         
     //==insert into the database======
     //connecting to the database ============================
-        @$db = new mysqli('mariadb', 'cs431s24', 'eiY2ahm1', 'cs431s24');
+        @$db = new mysqli('127.0.0.1', 'root', 'password', 'hotel');
 
         if (mysqli_connect_errno()) {
             echo "<p>Error: Could not connect to database.<br/>
@@ -99,6 +99,21 @@
             echo "</tr>";    
         }
     }
-    
+    function render_search_array($array){
+   
+        for($row = 0; $row < count($array); $row++){         
+            echo "
+                <tr class='gradeX'>
+                <td>".$array[$row]['firstname']."</td>
+                <td>".$array[$row]['lastname']."</td>
+                <td>".$array[$row]['roomNumber']."</td>
+                <td>".$array[$row]['phone']."</td>
+                <td>".$array[$row]['address']."</td>
+                <td>".$array[$row]['checkinDate']."</td>
+                <td>".$array[$row]['checkoutDate']."</td>
+                </tr>
+                "; 
+        }
+    }
 
 ?>
