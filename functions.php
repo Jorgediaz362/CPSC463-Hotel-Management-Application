@@ -15,7 +15,7 @@
         
     //==insert into the database======
     //connecting to the database ============================
-        @$db = new mysqli('127.0.0.1', 'root', 'password', 'hotel');
+        @$db = new mysqli('mariadb', 'cs431s24', 'eiY2ahm1', 'cs431s24');
 
         if (mysqli_connect_errno()) {
             echo "<p>Error: Could not connect to database.<br/>
