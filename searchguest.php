@@ -356,7 +356,7 @@
                                             ON r.roomNumber = s.roomNumber 
                                             ";
                                             $guests = executeQuery($select_sql);
-                                            $guestsArray = tranfertoArray( $allRooms);
+                                            $guestsArray = tranfertoArray( $guests);
                                             render_search_array( $guestsArray );
                                         ?>
 
