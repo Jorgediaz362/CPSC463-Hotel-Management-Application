@@ -260,16 +260,16 @@
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Housekeeping</a>
                     </li>                                      
                     <li>
-                        <a href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
+                        <a href="guest_information.php"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest stay</a>
+                        <a href="current_stay.php"><i class="fa fa-fw fa-file"></i> Guest stay</a>
                     </li>
                     <li>
-                        <a href="searchguest.html"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
+                        <a href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
                     </li>
                     <li>
-                        <a href="dailyreport.html"><i class="fa fa-fw fa-file"></i> Daily Report</a>
+                        <a href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
                     </li>
 
                 </ul>
