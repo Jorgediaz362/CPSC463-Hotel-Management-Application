@@ -104,8 +104,8 @@
         for($row = 0; $row < count($array); $row++){         
             echo "
                 <tr class='gradeX'>
-                <td>".$array[$row]['firstname']."</td>
-                <td>".$array[$row]['lastname']."</td>
+                <td>".$array[$row]['firstName']."</td>
+                <td>".$array[$row]['lastName']."</td>
                 <td>".$array[$row]['roomNumber']."</td>
                 <td>".$array[$row]['phone']."</td>
                 <td>".$array[$row]['address']."</td>
@@ -122,7 +122,7 @@
             echo "
                 <tr class='gradeX'>
                     <td>".$array[$row]['roomNumber']."</td>
-                    <td>".$array[$row]['firstname']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
                     <td>".$array[$row]['checkinDate']."</td>
                     <td>".$array[$row]['checkoutDate']."</td>
                     <td>".$array[$row]['paymentMade']."</td>
