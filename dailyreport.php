@@ -358,8 +358,8 @@
                                    <tbody>
                                         <?php 
                                             $select_sql= "SELECT r.roomNumber,g.firstname,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
-                                                          FROM reservations as r 
-                                                          INNER JOIN guests as g on g.guestID = r.guestID 
+                                                          FROM Reservations as r 
+                                                          INNER JOIN Guests as g on g.guestID = r.guestID 
                                             ";
                                             $daily = executeQuery($select_sql);
                                             $dailyArray = tranfertoArray( $daily);
@@ -379,8 +379,8 @@
                                    <tbody>
                                         <?php
                                             $select_sql= "SELECT r.roomNumber,g.firstname,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
-                                                          FROM reservations as r 
-                                                          INNER JOIN guests as g on g.guestID = r.guestID 
+                                                          FROM Reservations as r 
+                                                          INNER JOIN Guests as g on g.guestID = r.guestID 
                                             ";
                                             $daily = executeQuery($select_sql);
                                             $dailyArray = tranfertoArray( $daily);

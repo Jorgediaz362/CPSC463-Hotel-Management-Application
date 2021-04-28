@@ -350,8 +350,8 @@
                                         <?php 
                                             $name = $_POST['search'];
                                             $select_sql= "SELECT g.firstname,g.lastName,r.roomNumber,g.phone,g.address,r.checkinDate,r.checkoutDate 
-                                                        FROM guests as g 
-                                                        INNER JOIN reservations as r on (g.guestID = r.guestID AND g.firstname Like '".$name."' ) 
+                                                        FROM Guests as g 
+                                                        INNER JOIN Reservations as r on (g.guestID = r.guestID AND g.firstname Like '".$name."' ) 
                                             ";
                                             $guests = executeQuery($select_sql);
                                             $guestsArray = tranfertoArray( $guests);
