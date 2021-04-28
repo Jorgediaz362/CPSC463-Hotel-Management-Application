@@ -302,16 +302,13 @@
                                    <thead>
                                        <tr>
                                            <th>
-                                               First Name
+                                                Name
                                            </th>
                                            <th>
-                                               Last Name
+                                               Check in day
                                            </th>
                                            <th>
-                                               CI day
-                                           </th>
-                                           <th>
-                                               CO day
+                                               Check out day
                                            </th>
                                             <th>
                                                Room Type
@@ -347,13 +344,14 @@
                                                             ";
                                               $allcurrent = executeQuery($select_sql); //execute the query statement
                                               $multArraycurrent =  tranfertoArray( $allcurrent); //put all metadata into multi array
-                                              render_total_array( $multArraycurrent );        
+                                              render_total_array($multArraycurrent);
+                                              render_balance_array($multArraycurrent);
                                             
                                         ?>                                     
 
 
                                     
-                                       <tr>
+                                       <tr class="gradeX">
                                            <td>
                                                David
                                            </td>
@@ -385,7 +383,7 @@
                                                20
                                            </td>
                                        </tr>
-                                       <tr>
+                                       <tr class="gradeX">
                                             <td>
                                                Josh
                                            </td>
