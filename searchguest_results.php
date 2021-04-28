@@ -349,9 +349,9 @@
                                     <tbody>
                                         <?php 
                                             $name = $_POST['search'];
-                                            $select_sql= "SELECT g.firstname,g.lastName,r.roomNumber,g.phone,g.address,r.checkinDate,r.checkoutDate 
+                                            $select_sql= "SELECT g.firstName,g.lastName,r.roomNumber,g.phone,g.address,r.checkinDate,r.checkoutDate 
                                                         FROM Guests as g 
-                                                        INNER JOIN Reservations as r on (g.guestID = r.guestID AND g.firstname Like '".$name."' ) 
+                                                        INNER JOIN Reservations as r on (g.guestID = r.guestID AND g.firstName Like '".$name."' ) 
                                             ";
                                             $guests = executeQuery($select_sql);
                                             $guestsArray = tranfertoArray( $guests);

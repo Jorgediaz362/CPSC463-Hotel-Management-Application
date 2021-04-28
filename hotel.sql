@@ -67,10 +67,10 @@ INSERT INTO Guests VALUES
   (8, 'Noah','Tav', 'QA765','714-248-2152','noahtav@gmail.com','1917 Dale St, Garden Grove, TX','TY33FD');
 
 INSERT INTO Rooms VALUES
-  ('B342', 'King','Yes',NULL,99.99 ),
-  ('C22', 'Queen','Yes',NULL,99.99 ),
-  ('B300', 'Suite','Yes',NULL,99.99 ),
-  ('C21', 'Double Queen','Yes',NULL,99.99 ),
+  ('B342', 'King','Yes','Occupied',99.99 ),
+  ('C22', 'Queen','Yes','Occupied',99.99 ),
+  ('B300', 'Suite','Yes','Occupied',99.99 ),
+  ('C21', 'Double Queen','Yes','Occupied',99.99 ),
   ('B42', 'King','Yes','Occupied',99.99 ),
   ('C20', 'Queen','Yes','Reserved',99.99 ),
   ('B30', 'Suite','Yes','Reserved',99.99 ),

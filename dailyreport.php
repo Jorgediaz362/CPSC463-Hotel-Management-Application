@@ -357,7 +357,7 @@
                                    </thead>
                                    <tbody>
                                         <?php 
-                                            $select_sql= "SELECT r.roomNumber,g.firstname,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
+                                            $select_sql= "SELECT r.roomNumber,g.firstName,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
                                                           FROM Reservations as r 
                                                           INNER JOIN Guests as g on g.guestID = r.guestID 
                                             ";
@@ -378,7 +378,7 @@
                                    </thead>
                                    <tbody>
                                         <?php
-                                            $select_sql= "SELECT r.roomNumber,g.firstname,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
+                                            $select_sql= "SELECT r.roomNumber,g.firstName,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
                                                           FROM Reservations as r 
                                                           INNER JOIN Guests as g on g.guestID = r.guestID 
                                             ";
