@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ABC Hotel Management Application : Search Guest</title>
+    <title>ABC Hotel Management Application : Guest Information</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -260,13 +260,13 @@
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Housekeeping</a>
                     </li>                                      
                     <li>
-                        <a href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
+                        <a class="active-menu" href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
-                        <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest Stay</a>
+                        <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest stay</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
+                        <a href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
                     </li>
                     <li>
                         <a href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
@@ -280,52 +280,120 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-			    <div class="row">
+			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Search for a Guest
+                            Guests Information
                         </h1>
                     </div>
-
-                        <div class="search-container">
-                            <style> 
-                                input[type=text] {
-                                width: 30%;
-                                box-sizing: border-box;
-                                border: 2px solid #ccc;
-                                border-radius: 4px;
-                                font-size: 16px;
-                                background-color: white;
-                                background-image: url('searchicon.png');
-                                background-position: 10px 10px; 
-                                background-repeat: no-repeat;
-                                padding: 12px 20px 12px 40px;
-                                }
-                                
-                                input[type=text]:focus {
-                                width: 30%;
-                                }
-                                </style>
-                                
-                                <form action = "searchguest_results.php" method = "post">
-                                    <input type="text" name="search" placeholder="Search by First Name">
-                                    <input type="submit">
-                                </form>
+                   
+                    <p> 
+                        <div class="panel-heading">
+                             
                         </div>
-                        <p></p>
-                </div>
+                    </p>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                   <thead>
+                                       <tr>
+                                           <th>
+                                               First Name
+                                           </th>
+                                           <th>
+                                               Last Name
+                                           </th>
+                                           <th>
+                                               phone number
+                                           </th>
+                                           <th>
+                                               Address
+                                           </th>
+                                           <th>
+                                               E-mail
+                                           </th>
+                                           <th>
+                                               ID info
+                                           </th>
+                                           <th>
+                                               Vehicle License
+                                           </th>
 
-            </div> 
-
-
-                
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                    <?php 
+                                             //=============================Read the database ========//get  information====================
+                                            $select_sql= "SELECT * FROM Guests;";
+                                            $allGuests = executeQuery($select_sql); //execute the query statement
+                                            $multArrayGuests =  tranfertoArray( $allGuests); //put all metadata into multi array
+                                            render_guests_array($multArrayGuests);                 
+                                        ?>
+                                       <tr class="gradeX">
+                                           <td>
+                                               David
+                                           </td>
+                                           <td>
+                                               Lee
+                                           </td>
+                                            <td>
+                                               999-222-3333
+                                           </td>
+                                           <td>
+                                               12312 csu california
+                                           </td>
+                                            <td>
+                                               Fdddd@csu.fullerton.edu
+                                           </td>
+                                            <td>
+                                              CA 2123321
+                                           </td>
+                                           <td>
+                                               F77221111
+                                           </td>
+                                           
+                                       </tr>
+                                       <tr class="gradeX">
+                                           <td>
+                                               Jashon
+                                           </td>
+                                           <td>
+                                               KKK
+                                           </td>
+                                          <td>
+                                               999-222-32321
+                                           </td>
+                                            <td>
+                                               12223 csu california
+                                           </td>
+                                            <td>
+                                               GGGGG@csu.fullerton.edu
+                                           </td>
+                                            <td>
+                                              CA 231112
+                                           </td>
+                                           <td>
+                                               F7724321222
+                                           </td>
+                                       </tr>
+                                   </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div> 
                  <!-- /. ROW  -->
 				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
-		</div>
+				</div>
              <!-- /. PAGE INNER  -->
-    </div>
+            </div>
          <!-- /. PAGE WRAPPER  -->
-</div>
+        </div>
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->

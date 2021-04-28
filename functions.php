@@ -15,7 +15,7 @@
         
     //==insert into the database======
     //connecting to the database ============================
-        $db = mysqli_connect('mariadb', 'cs431s24', 'eiY2ahm1', 'cs431s24');
+        @$db = new mysqli('mariadb', 'cs431s24', 'eiY2ahm1', 'cs431s24');
 
         if (mysqli_connect_errno()) {
             echo "<p>Error: Could not connect to database.<br/>
@@ -113,6 +113,50 @@
                 <td>".$array[$row]['checkoutDate']."</td>
                 </tr>
                 "; 
+        }
+    }
+
+    function render_daily_array($array){
+   
+        for($row = 0; $row < count($array); $row++){         
+            echo "
+                <tr class='gradeX'>
+                    <td>".$array[$row]['roomNumber']."</td>
+                    <td>".$array[$row]['firstname']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['checkinDate']."</td>
+                    <td>".$array[$row]['checkoutDate']."</td>
+                    <td>".$array[$row]['paymentMade']."</td>
+                </tr>
+                "; 
+        }
+    }
+
+    function render_daily_total_array($array){
+        $total_earned = 0;
+        for($row = 0; $row < count($array); $row++){         
+                $total_earned = $total_earned + $array[$row]['paymentMade'];
+        }
+        echo "
+        <tr class='gradeX'>
+            <td>".$total_earned."</td>
+        </tr>
+        ";
+    }
+
+    //rendering guests array to webpage======================================================================
+     function render_guests_array($array){
+        for($row = 0; $row < count($array); $row++){         
+          echo "
+                 <tr class='gradeX'>
+                <td>".$array[$row]['firstname']."</td>
+                <td>".$array[$row]['lastname']."</td>
+                <td>".$array[$row]['stateID']."</td>
+                <td>".$array[$row]['phone']."</td>
+                <td>".$array[$row]['email']."</td>
+                <td>".$array[$row]['address']."</td>
+                <td>".$array[$row]['licensePlate']."</td>
+                </tr>      
+              ";
         }
     }
 

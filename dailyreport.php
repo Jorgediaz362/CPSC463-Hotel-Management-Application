@@ -7,13 +7,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ABC Hotel Management Application : Search Guest</title>
+    <title>ABC Hotel Management Application : Daily Report</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
         <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
+   <!-- Morris Chart Styles-->
+   <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -266,12 +268,11 @@
                         <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest Stay</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
+                        <a href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
                     </li>
                     <li>
-                        <a href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
+                        <a class="active-menu" href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
                     </li>
-
                 </ul>
 
             </div>
@@ -280,52 +281,130 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-			    <div class="row">
+			 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-header">
-                            Search for a Guest
-                        </h1>
+                        <h1 class="page-header"> Daily Report </h1>
                     </div>
 
-                        <div class="search-container">
-                            <style> 
-                                input[type=text] {
-                                width: 30%;
-                                box-sizing: border-box;
-                                border: 2px solid #ccc;
-                                border-radius: 4px;
-                                font-size: 16px;
-                                background-color: white;
-                                background-image: url('searchicon.png');
-                                background-position: 10px 10px; 
-                                background-repeat: no-repeat;
-                                padding: 12px 20px 12px 40px;
-                                }
-                                
-                                input[type=text]:focus {
-                                width: 30%;
-                                }
-                                </style>
-                                
-                                <form action = "searchguest_results.php" method = "post">
-                                    <input type="text" name="search" placeholder="Search by First Name">
-                                    <input type="submit">
-                                </form>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-green green">
+                                <div class="panel-left pull-left green"> </div>
+                                <div class="panel-right"> 
+                                    <h3>100</h3>
+                                    <strong> Available Rooms </strong>
+                                </div>
+                            </div>
                         </div>
-                        <p></p>
-                </div>
 
-            </div> 
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-left pull-left blue"> </div>
+                                <div class="panel-right"> 
+                                    <h3>2</h3>
+                                    <strong> Number of Guests </strong>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                <div class="panel-left pull-left blue"> </div>
+                                <div class="panel-right"> 
+                                    <h3>23</h3>
+                                    <strong> Reservations </strong>
+                                </div>
+                            </div>
+                        </div>
 
-                
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-red">
+                                <div class="panel-left pull-left red"> </div>
+                                <div class="panel-right"> 
+                                    <h3>11</h3>
+                                    <strong> Dirty Rooms </strong>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                   <thead>
+                                       <tr>
+                                           <th>
+                                                Room Number
+                                           </th>
+                                           <th>
+                                               Guest Name
+                                           </th>
+                                           <th>
+                                               Date In
+                                           </th>
+                                           <th>
+                                               Date Out
+                                           </th>
+                                           <th>
+                                               Amount Paid
+                                           </th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                        <?php 
+                                            $select_sql= "SELECT r.roomNumber,g.firstname,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
+                                                          FROM reservations as r 
+                                                          INNER JOIN guests as g on g.guestID = r.guestID 
+                                            ";
+                                            $daily = executeQuery($select_sql);
+                                            $dailyArray = tranfertoArray( $daily);
+                                            render_daily_array( $dailyArray );
+                                        ?>
+                                   </tbody>
+                                </table>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                   <thead>
+                                       <tr>
+                                           <th>Total $ Today</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                        <?php
+                                            $select_sql= "SELECT r.roomNumber,g.firstname,g.lastName,r.checkinDate,r.checkoutDate,r.paymentMade 
+                                                          FROM reservations as r 
+                                                          INNER JOIN guests as g on g.guestID = r.guestID 
+                                            ";
+                                            $daily = executeQuery($select_sql);
+                                            $dailyArray = tranfertoArray( $daily);
+                                            render_daily_total_array( $dailyArray );
+                                        ?>
+                                   </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" onclick="alert('Fetching new report')">Refresh Report</button>
+                    </div>
+
+                </div> 
                  <!-- /. ROW  -->
 				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
-		</div>
+				</div>
              <!-- /. PAGE INNER  -->
-    </div>
+            </div>
          <!-- /. PAGE WRAPPER  -->
-</div>
+        </div>
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
