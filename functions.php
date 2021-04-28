@@ -198,10 +198,10 @@
         //balance
         for($row =0; $row<count(array);$row++){
             //total_day
-            $total_day = $array[$row]['checkinDate'] -> diff($array[$row]['checkoutDate'])
+            $total_day = $array[$row]['checkinDate'] -> diff($array[$row]['checkoutDate']);
             //total_day->days only come out the days
-            $total_charge = $total_day -> days * $array[$row]['ratePerDay']
-            $balance = $total_pay-$array[$row]['paymentMade']
+            $total_charge = $total_day -> days * $array[$row]['ratePerDay'];
+            $balance = $total_charge-$array[$row]['paymentMade'];
         }
         echo "
         <tr class='gradeX'>
