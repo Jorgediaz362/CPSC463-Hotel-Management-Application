@@ -104,8 +104,8 @@
         for($row = 0; $row < count($array); $row++){         
             echo "
                 <tr class='gradeX'>
-                <td>".$array[$row]['firstName']."</td>
-                <td>".$array[$row]['lastName']."</td>
+                <td>".$array[$row]['firstname']."</td>
+                <td>".$array[$row]['lastname']."</td>
                 <td>".$array[$row]['roomNumber']."</td>
                 <td>".$array[$row]['phone']."</td>
                 <td>".$array[$row]['address']."</td>
@@ -122,7 +122,7 @@
             echo "
                 <tr class='gradeX'>
                     <td>".$array[$row]['roomNumber']."</td>
-                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['firstname']." ".$array[$row]['lastName']."</td>
                     <td>".$array[$row]['checkinDate']."</td>
                     <td>".$array[$row]['checkoutDate']."</td>
                     <td>".$array[$row]['paymentMade']."</td>
@@ -165,7 +165,8 @@
           for($row = 0; $row < count($array); $row++){         
             echo "
                 <tr class='gradeX'>
-                    <td>".$array[$row]['firstname']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['firstname']."</td>
+                    <td>".$array[$row]['lastname']."</td>
                     <td>".$array[$row]['checkinDate']."</td>
                     <td>".$array[$row]['checkoutDate']."</td>
                     <td>".$array[$row]['roomType']."</td>
@@ -197,11 +198,23 @@
         $balance = 0;
         //balance
         for($row =0; $row<count(array);$row++){
-            //total_day
-            $total_day = $array[$row]['checkinDate'] -> diff($array[$row]['checkoutDate']);
+            //the date from sql will be string
+            $date1 = $array[$row]['checkinDate'];
+            $date2 = $array[$row]['checkoutDate'];
+            //convert from MySQL datetime to php format
+                $diff = abs(strtotime($date1)-strtotime($date2));
+                $years = floor($diff / (365*60*60*24));
+                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                //total days
+                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+                //find out the total_charge
+                $PerDay = $array[$row]['ratePerDay'];
+                $total_charge = $days * $PerDay;
+           
             //total_day->days only come out the days
-            $total_charge = $total_day -> days * $array[$row]['ratePerDay'];
-            $balance = $total_charge-$array[$row]['paymentMade'];
+            $payment = $array[$row]['paymentMade']
+            $balance = $total_charge-$payment;
         }
         echo "
         <tr class='gradeX'>
