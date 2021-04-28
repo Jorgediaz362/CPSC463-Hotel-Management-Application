@@ -160,4 +160,58 @@
         }
     }
 
+    //render current stay to webpage==========================================================================
+    function render_total_array($array){
+          for($row = 0; $row < count($array); $row++){         
+            echo "
+                <tr class='gradeX'>
+                    <td>".$array[$row]['firstname']."</td>
+                    <td>".$array[$row]['lastname']."</td>
+                    <td>".$array[$row]['checkinDate']."</td>
+                    <td>".$array[$row]['checkoutDate']."</td>
+                    <td>".$array[$row]['roomType']."</td>
+                    <td>".$array[$row]['roomNumber']."</td>
+                    <td>".$array[$row]['ratePerDay']."</td>
+                </tr>
+                "; 
+        }
+
+    }
+    //function for total pay
+    //function render_totalpay_array($array){
+    //    $total_day = 0;
+   //     $total_pay = 0;
+   //     //total pay
+   //     for($row = 0; $row<count(array);$row++){
+  //          $total_day = $array[$row]['checkinDate'] -> diff($array[$row]['checkoutDate'])
+  //          $total_pay = $total_day -> days * $array[$row]['ratePerDay']
+    //    }
+    //    echo "
+    //    <tr class='gradeX'>
+    //        <td>".$total_pay."</td>
+    //    ";
+  //  }
+    
+    //function to count balance
+    //balance = length of stay * ratePerDay - paymentMade.
+    function render_balance_array($array){
+        $balance = 0;
+        //balance
+        for($row =0; $row<count(array);$row++){
+            //total_day
+            $total_day = $array[$row]['checkinDate'] -> diff($array[$row]['checkoutDate'])
+            //total_day->days only come out the days
+            $total_charge = $total_day -> days * $array[$row]['ratePerDay']
+            $balance = $total_pay-$array[$row]['paymentMade']
+        }
+        echo "
+        <tr class='gradeX'>
+            <td>".$total_charge."</td>
+            <td>".$array[$row]['paymentMade']."</td>
+            <td>".$balance."</td>
+        </tr>
+        ";
+
+    }
+
 ?>
