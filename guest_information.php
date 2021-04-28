@@ -266,10 +266,10 @@
                         <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest stay</a>
                     </li>
                     <li>
-                        <a href="searchguest.html"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
+                        <a href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
                     </li>
                     <li>
-                        <a href="dailyreport.html"><i class="fa fa-fw fa-file"></i> Daily Report</a>
+                        <a href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
                     </li>
 
                 </ul>
