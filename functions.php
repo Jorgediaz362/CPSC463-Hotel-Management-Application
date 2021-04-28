@@ -15,7 +15,7 @@
         
     //==insert into the database======
     //connecting to the database ============================
-        @$db = new mysqli('mariadb', 'cs431s24', 'eiY2ahm1', 'cs431s24');
+        @$db = new mysqli('localhost:9000', 'root', 'root', 'test');
 
         if (mysqli_connect_errno()) {
             echo "<p>Error: Could not connect to database.<br/>
@@ -150,10 +150,10 @@
                  <tr class='gradeX'>
                 <td>".$array[$row]['firstName']."</td>
                 <td>".$array[$row]['lastName']."</td>
-                <td>".$array[$row]['stateID']."</td>
                 <td>".$array[$row]['phone']."</td>
-                <td>".$array[$row]['email']."</td>
                 <td>".$array[$row]['address']."</td>
+                <td>".$array[$row]['email']."</td>
+                <td>".$array[$row]['stateID']."</td>
                 <td>".$array[$row]['licensePlate']."</td>
                 </tr>      
               ";

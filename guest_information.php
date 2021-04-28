@@ -12,7 +12,7 @@
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ABC Hotel Management Application : All Rooms in 7 Days</title>
-    <!-- Bootstrap Styles-->
+	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
@@ -258,7 +258,7 @@
                     <li>
                         <a href="all-rooms.php"><i class="fa fa-desktop"></i> Show All Rooms</a>
                     </li>
-                    <li>
+					<li>
                         <a href="rooms7days.php" class="active-menu"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
@@ -287,7 +287,7 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-             <div class="row">
+			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
                             Guests Information
@@ -324,7 +324,7 @@
                                                E-mail
                                            </th>
                                            <th>
-                                               ID info
+                                               State ID
                                            </th>
                                            <th>
                                                Vehicle License
