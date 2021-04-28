@@ -143,4 +143,21 @@
         ";
     }
 
+    //rendering guests array to webpage======================================================================
+     function render_guests_array($array){
+        for($row = 0; $row < count($array); $row++){         
+          echo "
+                 <tr class='gradeX'>
+                <td>".$array[$row]['firstname']."</td>
+                <td>".$array[$row]['lastname']."</td>
+                <td>".$array[$row]['stateID']."</td>
+                <td>".$array[$row]['phone']."</td>
+                <td>".$array[$row]['email']."</td>
+                <td>".$array[$row]['address']."</td>
+                <td>".$array[$row]['licensePlate']."</td>
+                </tr>      
+              ";
+        }
+    }
+
 ?>
