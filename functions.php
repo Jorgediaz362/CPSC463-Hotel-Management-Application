@@ -116,4 +116,31 @@
         }
     }
 
+    function render_daily_array($array){
+   
+        for($row = 0; $row < count($array); $row++){         
+            echo "
+                <tr class='gradeX'>
+                    <td>".$array[$row]['roomNumber']."</td>
+                    <td>".$array[$row]['firstname']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['checkinDate']."</td>
+                    <td>".$array[$row]['checkoutDate']."</td>
+                    <td>".$array[$row]['paymentMade']."</td>
+                </tr>
+                "; 
+        }
+    }
+
+    function render_daily_total_array($array){
+        $total_earned = 0;
+        for($row = 0; $row < count($array); $row++){         
+                $total_earned = $total_earned + $array[$row]['paymentMade'];
+        }
+        echo "
+        <tr class='gradeX'>
+            <td>".$total_earned."</td>
+        </tr>
+        ";
+    }
+
 ?>

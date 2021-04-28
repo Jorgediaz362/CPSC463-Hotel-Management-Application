@@ -313,19 +313,69 @@
                                 </form>
                         </div>
                         <p></p>
-                </div>
+                        <!--- Stuff went here --->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+        
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                First Name
+                                            </th>
+                                            <th>
+                                                Last Name
+                                            </th>
+                                            <th>
+                                                Room Number
+                                            </th>
+                                            <th>
+                                                Phone Number
+                                            </th>
+                                            <th>
+                                                Street Address
+                                            </th>
+                                            <th>
+                                                Check In Date
+                                            </th>
+                                            <th>
+                                                Checkout Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            $name = $_POST['search'];
+                                            $select_sql= "SELECT g.firstname,g.lastName,r.roomNumber,g.phone,g.address,r.checkinDate,r.checkoutDate 
+                                                        FROM guests as g 
+                                                        INNER JOIN reservations as r on (g.guestID = r.guestID AND g.firstname Like '".$name."' ) 
+                                            ";
+                                            $guests = executeQuery($select_sql);
+                                            $guestsArray = tranfertoArray( $guests);
+                                            render_search_array( $guestsArray );
+                                        
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+        
+                        </div>
+                    </div>
 
-            </div> 
+                </div> 
 
 
                 
                  <!-- /. ROW  -->
 				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
-		</div>
+			    </div>
              <!-- /. PAGE INNER  -->
-    </div>
+            </div>
          <!-- /. PAGE WRAPPER  -->
-</div>
+        </div>
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
