@@ -195,7 +195,7 @@
     //function to count balance
     //balance = length of stay * ratePerDay - paymentMade.
     function render_balance_array($array){
-        $balance = 0;
+        //$balance = 0;
         //balance
         for($row =0; $row<count(array);$row++){
             //the date from sql will be string
@@ -215,14 +215,14 @@
             //total_day->days only come out the days
             $payment = $array[$row]['paymentMade']
             $balance = $total_charge-$payment;
+              echo "
+                <tr class='gradeX'>
+                    <td>".$total_charge."</td>
+                    <td>".$array[$row]['paymentMade']."</td>
+                    <td>".$balance."</td>
+                </tr>
+                ";
         }
-        echo "
-        <tr class='gradeX'>
-            <td>".$total_charge."</td>
-            <td>".$array[$row]['paymentMade']."</td>
-            <td>".$balance."</td>
-        </tr>
-        ";
 
     }
 
