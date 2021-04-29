@@ -117,30 +117,40 @@
     }
 
     function render_daily_array($array){
-   
-        for($row = 0; $row < count($array); $row++){         
-            echo "
-                <tr class='gradeX'>
+        $week = 0;
+        $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days"));    
+        for($row = 0; $row < count($array); $row++){       
+            $j = 0;  
+            $temp_date = date('Y-m-d',strtotime($week_first_date."+".$j." days"));                           
+            if ($array[$row]['checkinDate'] <=  $temp_date && $temp_date <= $array[$row]['checkoutDate']){
+                echo "
+                    <tr class='gradeX'>
                     <td>".$array[$row]['roomNumber']."</td>
                     <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
                     <td>".$array[$row]['checkinDate']."</td>
                     <td>".$array[$row]['checkoutDate']."</td>
                     <td>".$array[$row]['paymentMade']."</td>
-                </tr>
-                "; 
+                    </tr>";
+            }
         }
     }
 
     function render_daily_total_array($array){
+        $week = 0;
         $total_earned = 0;
-        for($row = 0; $row < count($array); $row++){         
-                $total_earned = $total_earned + $array[$row]['paymentMade'];
-        }
-        echo "
-        <tr class='gradeX'>
-            <td>".$total_earned."</td>
-        </tr>
-        ";
+        $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days"));    
+            for($row = 0; $row < count($array); $row++){         
+                $j = 0;
+                $temp_date = date('Y-m-d',strtotime($week_first_date."+".$j." days"));
+                if ($array[$row]['checkinDate'] <=  $temp_date && $temp_date <= $array[$row]['checkoutDate']){
+                    $total_earned = $total_earned + $array[$row]['paymentMade'];
+                }   
+            }
+           echo "
+           <tr class='gradeX'>
+               <td>".$total_earned."</td>
+           </tr>
+           ";
     }
 
     //rendering guests array to webpage======================================================================
@@ -181,7 +191,7 @@
     function render_balance_array($array){
         //$balance = 0;
         //balance
-        for($row =0; $row<count(array);$row++){
+        for($row =0; $row<count($array);$row++){
             //the date from sql will be string
             $date1 = $array[$row]['checkinDate'];
             $date2 = $array[$row]['checkoutDate'];
