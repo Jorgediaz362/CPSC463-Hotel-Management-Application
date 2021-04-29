@@ -160,22 +160,7 @@
         }
     }
 
-    //render current stay to webpage==========================================================================
-    function render_total_array($array){
-          for($row = 0; $row < count($array); $row++){         
-            echo "
-                <tr class='gradeX'>
-                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
-                    <td>".$array[$row]['checkinDate']."</td>
-                    <td>".$array[$row]['checkoutDate']."</td>
-                    <td>".$array[$row]['roomType']."</td>
-                    <td>".$array[$row]['roomNumber']."</td>
-                    <td>".$array[$row]['ratePerDay']."</td>
-                </tr>
-                "; 
-        }
 
-    }
     //function for total pay
     //function render_totalpay_array($array){
     //    $total_day = 0;
@@ -191,7 +176,7 @@
     //    ";
   //  }
     
-    //function to count balance
+    //function to current stay
     //balance = length of stay * ratePerDay - paymentMade.
     function render_balance_array($array){
         //$balance = 0;
@@ -208,14 +193,17 @@
                 $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 
                 //find out the total_charge
-                $PerDay = $array[$row]['ratePerDay'];
-                $total_charge = $days * $PerDay;
+                $total_charge = $days * $array[$row]['ratePerDay'];
            
-            //total_day->days only come out the days
-            $payment = $array[$row]['paymentMade']
-            $balance = $total_charge-$payment;
+            $balance = $total_charge-$array[$row]['paymentMade'];
               echo "
                 <tr class='gradeX'>
+                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['checkinDate']."</td>
+                    <td>".$array[$row]['checkoutDate']."</td>
+                    <td>".$array[$row]['roomType']."</td>
+                    <td>".$array[$row]['roomNumber']."</td>
+                    <td>".$array[$row]['ratePerDay']."</td>
                     <td>".$total_charge."</td>
                     <td>".$array[$row]['paymentMade']."</td>
                     <td>".$balance."</td>
