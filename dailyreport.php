@@ -286,46 +286,12 @@
                         <h1 class="page-header"> Daily Report </h1>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <div class="panel panel-primary text-center no-boder bg-color-green green">
-                                <div class="panel-left pull-left green"> </div>
-                                <div class="panel-right"> 
-                                    <h3>100</h3>
-                                    <strong> Available Rooms </strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <div class="panel panel-primary text-center no-boder bg-color-blue">
-                                <div class="panel-left pull-left blue"> </div>
-                                <div class="panel-right"> 
-                                    <h3>2</h3>
-                                    <strong> Number of Guests </strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <div class="panel panel-primary text-center no-boder bg-color-blue">
-                                <div class="panel-left pull-left blue"> </div>
-                                <div class="panel-right"> 
-                                    <h3>23</h3>
-                                    <strong> Reservations </strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <div class="panel panel-primary text-center no-boder bg-color-red">
-                                <div class="panel-left pull-left red"> </div>
-                                <div class="panel-right"> 
-                                    <h3>11</h3>
-                                    <strong> Dirty Rooms </strong>
-                                </div>
-                            </div>
-                        </div>
+                    <?php
+                        $select_sql= "SELECT r.status FROM Rooms as r ";
+                        $daily_report = executeQuery($select_sql);
+                        $daily_report_Array = tranfertoArray($daily_report);
+                        render_daily_report($daily_report_Array);                    
+                    ?>
 
                     </div>
 
