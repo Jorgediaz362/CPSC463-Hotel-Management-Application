@@ -344,7 +344,6 @@
                                                             ";
                                               $allcurrent = executeQuery($select_sql); //execute the query statement
                                               $multArraycurrent =  tranfertoArray( $allcurrent); //put all metadata into multi array
-                                              render_total_array($multArraycurrent);
                                               render_balance_array($multArraycurrent);
                                             
                                         ?>                                     
