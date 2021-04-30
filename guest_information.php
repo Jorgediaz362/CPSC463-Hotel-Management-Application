@@ -259,7 +259,7 @@
                         <a href="all-rooms.php"><i class="fa fa-desktop"></i> Show All Rooms</a>
                     </li>
 					<li>
-                        <a href="rooms7days.php" class="active-menu"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
+                        <a href="rooms7days.php" ><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
                         <a href="ui-elements.html"><i class="fa fa-desktop"></i> Your Reservation</a>
@@ -341,7 +341,7 @@
                                                             FROM Guests AS g";
                                               $allguests = executeQuery($select_sql); //execute the query statement
                                               $multArrayguests =  tranfertoArray( $allRooms); //put all metadata into multi array
-                                              render_guests_array($multArrayRooms );        
+                                              render_guests_information_array($multArrayRooms );        
                                             
                                         ?>                                       
                                        
