@@ -1,21 +1,29 @@
-<?php
-    require_once 'functions.php';
-?>
 
+
+<?php
+    //Connecting database, and render queried data to webpage
+    require_once 'functions.php';
+
+   
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+      <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ABC Hotel Management Application : Guest Information</title>
+    <title>ABC Hotel Management Application : All Rooms in 7 Days</title>
 	<!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- Morris Chart Styles-->
+   
         <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <div id="wrapper">
@@ -27,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><i class="fa fa-gear"></i> <strong>ABC Hotel</strong></a>
+                <a class="navbar-brand" href="index.html"><i class="fa fa-gear"></i> <strong>ABC HOTEL</strong></a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -250,17 +258,17 @@
                     <li>
                         <a href="all-rooms.php"><i class="fa fa-desktop"></i> Show All Rooms</a>
                     </li>
-                    <li>
-                        <a href="rooms7days.php"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
+					<li>
+                        <a href="rooms7days.php" class="active-menu"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
                         <a href="ui-elements.html"><i class="fa fa-desktop"></i> Your Reservation</a>
-                    </li>					
+                    </li>                   
                     <li>
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Housekeeping</a>
                     </li>                                      
                     <li>
-                        <a class="active-menu" href="guest_information.php"><i class="fa fa-edit"></i> Guest Information</a>
+                        <a href="guest.php"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
                         <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest stay</a>
@@ -271,7 +279,6 @@
                     <li>
                         <a href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
                     </li>
-
                 </ul>
 
             </div>
@@ -317,7 +324,7 @@
                                                E-mail
                                            </th>
                                            <th>
-                                               ID info
+                                               State ID
                                            </th>
                                            <th>
                                                Vehicle License
@@ -326,74 +333,33 @@
                                        </tr>
                                    </thead>
                                    <tbody>
-                                    <?php 
-                                             //=============================Read the database ========//get  information====================
-                                            $select_sql= "SELECT * FROM Guests;";
-                                            $allGuests = executeQuery($select_sql); //execute the query statement
-                                            $multArrayGuests =  tranfertoArray( $allGuests); //put all metadata into multi array
-                                            render_guests_array($multArrayGuests);                 
-                                        ?>
-                                       <tr class="gradeX">
-                                           <td>
-                                               David
-                                           </td>
-                                           <td>
-                                               Lee
-                                           </td>
-                                            <td>
-                                               999-222-3333
-                                           </td>
-                                           <td>
-                                               12312 csu california
-                                           </td>
-                                            <td>
-                                               Fdddd@csu.fullerton.edu
-                                           </td>
-                                            <td>
-                                              CA 2123321
-                                           </td>
-                                           <td>
-                                               F77221111
-                                           </td>
-                                           
-                                       </tr>
-                                       <tr class="gradeX">
-                                           <td>
-                                               Jashon
-                                           </td>
-                                           <td>
-                                               KKK
-                                           </td>
-                                          <td>
-                                               999-222-32321
-                                           </td>
-                                            <td>
-                                               12223 csu california
-                                           </td>
-                                            <td>
-                                               GGGGG@csu.fullerton.edu
-                                           </td>
-                                            <td>
-                                              CA 231112
-                                           </td>
-                                           <td>
-                                               F7724321222
-                                           </td>
-                                       </tr>
-                                   </tbody>
+
+                                        <?php 
+                                              //=================query the datbase get the reservation with range within next 7 days ====================
+                                              // ????????????       use left join and display to  webpage                                              
+                                              $select_sql= "SELECT g.firstName,g.lastName,g.phone,g.address,g.mail,g.stateID,g.licensePlate
+                                                            FROM Guests AS g";
+                                              $allguests = executeQuery($select_sql); //execute the query statement
+                                              $multArrayguests =  tranfertoArray( $allRooms); //put all metadata into multi array
+                                              render_guests_array($multArrayRooms );        
+                                            
+                                        ?>                                       
+                                       
+                                    </tbody>
                                 </table>
                             </div>
                             
                         </div>
                     </div>
-                </div> 
-                 <!-- /. ROW  -->
-				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
-				</div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>              
+        </div>
+                <footer><p>Private Software: <a href="index.html">ABC Hotel</a></p>
+    </div>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
-        </div>
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
@@ -402,7 +368,15 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-      <!-- Custom Js -->
+     <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+         <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
     
    

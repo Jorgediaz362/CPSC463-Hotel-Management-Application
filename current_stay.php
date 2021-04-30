@@ -7,8 +7,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ABC Hotel Management Application : Search Guest</title>
-	<!-- Bootstrap Styles-->
+    <title>ABC Hotel Management Application : Current Stay</title>
+    <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
@@ -255,18 +255,18 @@
                     </li>
                     <li>
                         <a href="ui-elements.html"><i class="fa fa-desktop"></i> Your Reservation</a>
-                    </li>					
+                    </li>                   
                     <li>
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Housekeeping</a>
                     </li>                                      
                     <li>
-                        <a href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
+                        <a href="guest_information.php"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
-                        <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest Stay</a>
+                        <a href="current_stay.php"><i class="fa fa-fw fa-file"></i> Guest stay</a>
                     </li>
                     <li>
-                        <a class="active-menu" href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
+                        <a href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
                     </li>
                     <li>
                         <a href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
@@ -280,98 +280,83 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-			    <div class="row">
+             <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Search for a Guest
+                            Guests Stay
                         </h1>
                     </div>
-
-                        <div class="search-container">
-                            <style> 
-                                input[type=text] {
-                                width: 30%;
-                                box-sizing: border-box;
-                                border: 2px solid #ccc;
-                                border-radius: 4px;
-                                font-size: 16px;
-                                background-color: white;
-                                background-image: url('searchicon.png');
-                                background-position: 10px 10px; 
-                                background-repeat: no-repeat;
-                                padding: 12px 20px 12px 40px;
-                                }
-                                
-                                input[type=text]:focus {
-                                width: 30%;
-                                }
-                                </style>
-                                
-                                <form action = "searchguest_results.php" method = "post">
-                                    <input type="text" name="search" placeholder="Search by First Name">
-                                    <input type="submit">
-                                </form>
+                   
+                    <p> 
+                        <div class="panel-heading">
+                             
                         </div>
-                        <p></p>
-                        <!--- Stuff went here --->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-        
+                    </p>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
+                                   <thead>
+                                       <tr>
+                                           <th>
+                                                Name
+                                           </th>
+                                           <th>
+                                               Check in day
+                                           </th>
+                                           <th>
+                                               Check out day
+                                           </th>
                                             <th>
-                                                First Name
-                                            </th>
+                                               Room Type
+                                           </th>
+                                           <th>
+                                               Room number
+                                           </th>
                                             <th>
-                                                Last Name
-                                            </th>
+                                               Room Rate ($/Day)
+                                           </th>
                                             <th>
-                                                Room Number
-                                            </th>
+                                               Total Charge
+                                           </th>
                                             <th>
-                                                Phone Number
-                                            </th>
+                                               Payments Made
+                                           </th>
                                             <th>
-                                                Street Address
-                                            </th>
-                                            <th>
-                                                Check In Date
-                                            </th>
-                                            <th>
-                                                Checkout Date
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                               Balance
+                                           </th>
+
+                                       </tr>
+                                   </thead>
+                                   <tbody>
                                         <?php 
-                                            $name = $_POST['search'];
-                                            $select_sql= "SELECT g.firstName,g.lastName,r.roomNumber,g.phone,g.address,r.checkinDate,r.checkoutDate 
-                                                        FROM Guests as g 
-                                                        INNER JOIN Reservations as r on (g.guestID = r.guestID AND g.firstName Like '".$name."' ) 
-                                            ";
-                                            $guests = executeQuery($select_sql);
-                                            $guestsArray = tranfertoArray( $guests);
-                                            render_search_array( $guestsArray );
-                                        
-                                        ?>
-                                    </tbody>
+                                              //=================query the datbase get the reservation with range within next 7 days ====================
+                                              // ????????????       use left join and display to  webpage                                              
+                                              $select_sql= "SELECT s.firstName, s.lastName, s.checkinDate, s.checkoutDate,r.roomType,r.roomNumber,r.ratePerDay,s.paymentMade
+                                                            FROM Rooms AS r
+                                                            INNER JOIN (SELECT g.firstName,g.lastName,re.roomNumber,re.checkinDate, re.checkoutDate ,re.paymentMade
+                                                                        FROM Reservations AS re
+                                                                        INNER JOIN Guests AS g ON re.guestID = g.guestID  ) AS s
+                                                            ON r.roomNumber = s.roomNumber 
+                                                            ";
+                                              $allcurrent = executeQuery($select_sql); //execute the query statement
+                                              $multArraycurrent =  tranfertoArray( $allcurrent); //put all metadata into multi array
+                                              render_balance_array($multArraycurrent);
+                                            
+                                        ?>                                     
+                                   </tbody>
                                 </table>
                             </div>
-        
+                            
                         </div>
                     </div>
-
                 </div> 
-
-
-                
                  <!-- /. ROW  -->
-				 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
-			    </div>
+                 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+                </div>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->

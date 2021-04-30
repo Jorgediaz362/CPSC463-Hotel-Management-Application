@@ -104,8 +104,8 @@
         for($row = 0; $row < count($array); $row++){         
             echo "
                 <tr class='gradeX'>
-                <td>".$array[$row]['firstname']."</td>
-                <td>".$array[$row]['lastname']."</td>
+                <td>".$array[$row]['firstName']."</td>
+                <td>".$array[$row]['lastName']."</td>
                 <td>".$array[$row]['roomNumber']."</td>
                 <td>".$array[$row]['phone']."</td>
                 <td>".$array[$row]['address']."</td>
@@ -116,31 +116,104 @@
         }
     }
 
+    function render_daily_report($array){
+        $openR = 0;
+        $numG = 0;
+        $reservation = 0;
+        $dirtyR = 0;
+        for($row = 0; $row < count($array); $row++){
+            if($array[$row]['status'] == 'Available'){
+                $openR++;
+            }
+            if($array[$row]['status'] == 'Occupied'){
+                $numG++;
+            }
+            if($array[$row]['status'] == 'Reserved'){
+                $reservation++;
+            }
+            if($array[$row]['status'] == 'Occupied'){
+                $dirtyR++;
+            }
+        }
+        echo '
+            <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-green green">
+                    <div class="panel-left pull-left green"> </div>
+                    <div class="panel-right"> 
+                        <h3>'.$openR.'</h3>
+                        <strong> Available Rooms </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-blue">
+                    <div class="panel-left pull-left blue"> </div>
+                    <div class="panel-right"> 
+                        <h3>'.$numG.'</h3>
+                        <strong> Number of Guests </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-blue">
+                    <div class="panel-left pull-left blue"> </div>
+                    <div class="panel-right"> 
+                        <h3>'.$reservation.'</h3>
+                        <strong> Reservations </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="panel panel-primary text-center no-boder bg-color-red">
+                    <div class="panel-left pull-left red"> </div>
+                    <div class="panel-right"> 
+                        <h3>'.$dirtyR.'</h3>
+                        <strong> Dirty Rooms </strong>
+                    </div>
+                </div>
+            </div>
+        ';
+    }
+
     function render_daily_array($array){
-   
-        for($row = 0; $row < count($array); $row++){         
-            echo "
-                <tr class='gradeX'>
+        $week = 0;
+        $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days"));    
+        for($row = 0; $row < count($array); $row++){       
+            $j = 0;  
+            $temp_date = date('Y-m-d',strtotime($week_first_date."+".$j." days"));                           
+            if ($array[$row]['checkinDate'] <=  $temp_date && $temp_date <= $array[$row]['checkoutDate']){
+                echo "
+                    <tr class='gradeX'>
                     <td>".$array[$row]['roomNumber']."</td>
-                    <td>".$array[$row]['firstname']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
                     <td>".$array[$row]['checkinDate']."</td>
                     <td>".$array[$row]['checkoutDate']."</td>
                     <td>".$array[$row]['paymentMade']."</td>
-                </tr>
-                "; 
+                    </tr>";
+            }
         }
     }
 
     function render_daily_total_array($array){
+        $week = 0;
         $total_earned = 0;
-        for($row = 0; $row < count($array); $row++){         
-                $total_earned = $total_earned + $array[$row]['paymentMade'];
-        }
-        echo "
-        <tr class='gradeX'>
-            <td>".$total_earned."</td>
-        </tr>
-        ";
+        $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days"));    
+            for($row = 0; $row < count($array); $row++){         
+                $j = 0;
+                $temp_date = date('Y-m-d',strtotime($week_first_date."+".$j." days"));
+                if ($array[$row]['checkinDate'] <=  $temp_date && $temp_date <= $array[$row]['checkoutDate']){
+                    $total_earned = $total_earned + $array[$row]['paymentMade'];
+                }   
+            }
+           echo "
+           <tr class='gradeX'>
+               <td>".$total_earned."</td>
+           </tr>
+           ";
     }
 
     //rendering guests array to webpage======================================================================
@@ -148,16 +221,69 @@
         for($row = 0; $row < count($array); $row++){         
           echo "
                  <tr class='gradeX'>
-                <td>".$array[$row]['firstname']."</td>
-                <td>".$array[$row]['lastname']."</td>
-                <td>".$array[$row]['stateID']."</td>
+                <td>".$array[$row]['firstName']."</td>
+                <td>".$array[$row]['lastName']."</td>
                 <td>".$array[$row]['phone']."</td>
-                <td>".$array[$row]['email']."</td>
                 <td>".$array[$row]['address']."</td>
+                <td>".$array[$row]['email']."</td>
+                <td>".$array[$row]['stateID']."</td>
                 <td>".$array[$row]['licensePlate']."</td>
                 </tr>      
               ";
         }
+    }
+
+
+    //function for total pay
+    //function render_totalpay_array($array){
+    //    $total_day = 0;
+   //     $total_pay = 0;
+   //     //total pay
+   //     for($row = 0; $row<count(array);$row++){
+  //          $total_day = $array[$row]['checkinDate'] -> diff($array[$row]['checkoutDate'])
+  //          $total_pay = $total_day -> days * $array[$row]['ratePerDay']
+    //    }
+    //    echo "
+    //    <tr class='gradeX'>
+    //        <td>".$total_pay."</td>
+    //    ";
+  //  }
+    
+    //function to current stay
+    //balance = length of stay * ratePerDay - paymentMade.
+    function render_balance_array($array){
+        //$balance = 0;
+        //balance
+        for($row =0; $row<count($array);$row++){
+            //the date from sql will be string
+            $date1 = $array[$row]['checkinDate'];
+            $date2 = $array[$row]['checkoutDate'];
+            //convert from MySQL datetime to php format
+                $diff = abs(strtotime($date1)-strtotime($date2));
+                $years = floor($diff / (365*60*60*24));
+                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                //total days
+                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+                //find out the total_charge
+                $total_charge = $days * $array[$row]['ratePerDay'];
+           
+            $balance = $total_charge-$array[$row]['paymentMade'];
+              echo "
+                <tr class='gradeX'>
+                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['checkinDate']."</td>
+                    <td>".$array[$row]['checkoutDate']."</td>
+                    <td>".$array[$row]['roomType']."</td>
+                    <td>".$array[$row]['roomNumber']."</td>
+                    <td>".$array[$row]['ratePerDay']."</td>
+                    <td>".$total_charge."</td>
+                    <td>".$array[$row]['paymentMade']."</td>
+                    <td>".$balance."</td>
+                </tr>
+                ";
+        }
+
     }
 
 ?>
