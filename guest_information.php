@@ -342,7 +342,7 @@
                                               $allguests = executeQuery($select_sql); //execute the query statement
                                               $multArrayguests =  tranfertoArray($allguests); //put all metadata into multi array
                                               render_guests_array($multArrayguests);        
-                                            
+
                                         ?>                                       
                                        
                                     </tbody>
