@@ -355,7 +355,7 @@
                     </div>
                 </div> 
                  <!-- /. ROW  -->
-                 <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+                 <footer><p>Private Software: <a href="index.html">ABC Hotel</a></p>
                 </div>
              <!-- /. PAGE INNER  -->
             </div>
