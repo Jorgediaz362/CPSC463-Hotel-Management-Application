@@ -268,7 +268,7 @@
                         <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Housekeeping</a>
                     </li>                                      
                     <li>
-                        <a href="guest.php"><i class="fa fa-edit"></i> Guest Information</a>
+                        <a href="guest_information.php"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
                         <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest stay</a>
