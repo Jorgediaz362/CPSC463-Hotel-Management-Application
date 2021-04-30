@@ -341,7 +341,7 @@
                                                             FROM Guests AS g";
                                               $allguests = executeQuery($select_sql); //execute the query statement
                                               $multArrayguests =  tranfertoArray( $allRooms); //put all metadata into multi array
-                                              render_guests_information_array($multArrayRooms );        
+                                              render_guests_array($multArrayRooms );        
                                             
                                         ?>                                       
                                        
