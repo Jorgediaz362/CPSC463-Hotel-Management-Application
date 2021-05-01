@@ -1,29 +1,21 @@
-
-
 <?php
-    //Connecting database, and render queried data to webpage
     require_once 'functions.php';
-
-   
 ?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ABC Hotel Management Application : All Rooms in 7 Days</title>
-	<!-- Bootstrap Styles-->
+    <title>ABC Hotel Management Application : Current Stay</title>
+    <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-     <!-- Morris Chart Styles-->
-   
         <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-     <!-- TABLE STYLES-->
-    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <body>
     <div id="wrapper">
@@ -35,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><i class="fa fa-gear"></i> <strong>ABC HOTEL</strong></a>
+                <a class="navbar-brand" href="index.html"><i class="fa fa-gear"></i> <strong>ABC Hotel</strong></a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -258,8 +250,8 @@
                     <li>
                         <a href="all-rooms.php"><i class="fa fa-desktop"></i> Show All Rooms</a>
                     </li>
-					<li>
-                        <a href="rooms7days.php" ><i class="fa fa-table"></i> Rooms Next 7 Days</a>
+                    <li>
+                        <a href="rooms7days.php"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
                         <a href="ui-elements.html"><i class="fa fa-desktop"></i> Your Reservation</a>
@@ -279,6 +271,7 @@
                     <li>
                         <a href="dailyreport.php"><i class="fa fa-fw fa-file"></i> Daily Report</a>
                     </li>
+
                 </ul>
 
             </div>
@@ -287,10 +280,10 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-			 <div class="row">
+             <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Guests Information
+                            Guests Stay
                         </h1>
                     </div>
                    
@@ -333,33 +326,28 @@
                                        </tr>
                                    </thead>
                                    <tbody>
-
                                         <?php 
-                                              //=================query the datbase get the reservation with range within next 7 days ====================
-                                              // ????????????       use left join and display to  webpage                                              
-                                              $select_sql= "SELECT g.firstName,g.lastName,g.phone,g.address,g.mail,g.stateID,g.licensePlate
-                                                            FROM Guests AS g";
-                                              $allguests = executeQuery($select_sql); //execute the query statement
-                                              $multArrayguests =  tranfertoArray($allguests); //put all metadata into multi array
-                                              render_guests_array($multArrayguests);        
-
-                                        ?>                                       
-                                       
-                                    </tbody>
+                                              //=================query the datbase get the reservation with range within next 7 days ====================                                          
+                                              $select_sql= "SELECT * FROM Guests";
+                                              $guestsinfor = executeQuery($select_sql); //execute the query statement
+                                              $multArrayguestsinfor =  tranfertoArray( $guestsinfor); //put all metadata into multi array
+                                              render_guests_array($multArrayguestsinfor);
+                                            
+                                        ?>                                     
+                                   </tbody>
                                 </table>
                             </div>
                             
                         </div>
                     </div>
-                    <!--End Advanced Tables -->
+                </div> 
+                 <!-- /. ROW  -->
+                 <footer><p>Private Software: <a href="index.html">ABC Hotel</a></p>
                 </div>
-            </div>              
-        </div>
-                <footer><p>Private Software: <a href="index.html">ABC Hotel</a></p>
-    </div>
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->
+        </div>
      <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
@@ -368,15 +356,7 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
     <script src="assets/js/jquery.metisMenu.js"></script>
-     <!-- DATA TABLE SCRIPTS -->
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-    </script>
-         <!-- Custom Js -->
+      <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
     
    
