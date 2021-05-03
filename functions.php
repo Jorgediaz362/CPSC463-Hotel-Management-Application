@@ -121,26 +121,19 @@
         $numG = 0;
         $reservation = 0;
         $dirtyR = 0;
-        $week = 0;
-        $week_first_date = date('Y-m-d',strtotime("-".(0-$week). " days"));    
-        for($row = 0; $row < count($array); $row++){       
-            $j = 0;  
-            $temp_date = date('Y-m-d',strtotime($week_first_date."+".$j." days"));                           
-            if ($array[$row]['checkinDate'] <=  $temp_date && $temp_date <= $array[$row]['checkoutDate']){
-                if($array[$row]['status'] == 'Available'){
-                    $openR++;
-                }
-                if($array[$row]['status'] == 'Occupied'){
-                    $numG++;
-                }
-                if($array[$row]['status'] == 'Reserved'){
-                    $reservation++;
-                }
-                if($array[$row]['status'] == 'Occupied'){
-                    $dirtyR++;
-                }
+        for($row = 0; $row < count($array); $row++){
+            if($array[$row]['status'] == 'Available'){
+                $openR++;
             }
-
+            if($array[$row]['status'] == 'Occupied'){
+                $numG++;
+            }
+            if($array[$row]['status'] == 'Reserved'){
+                $reservation++;
+            }
+            if($array[$row]['status'] == 'Occupied'){
+                $dirtyR++;
+            }
         }
         echo '
             <div class="row">
