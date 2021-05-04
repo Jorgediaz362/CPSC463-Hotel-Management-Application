@@ -56,6 +56,16 @@ CREATE TABLE Reservations
   FOREIGN KEY (roomNumber) REFERENCES Rooms(roomNumber)
 );
 
+CREATE TABLE PriorGuests
+( firstName CHAR(25) NOT NULL PRIMARY KEY,
+  lastName CHAR(25) NOT NULL,
+  roomNumber CHAR(13),
+  phone CHAR(12),
+  address CHAR(100),
+  checkinDate DATE NOT NULL,
+  checkoutDate DATE NOT NULL
+);
+
 INSERT INTO Guests VALUES
   (1, 'Julie','Smith', 'CA1234','714-999-9999','email@gmail.com','1122 Dale St, Garden Grove, CA','SH32314'),
   (2, 'Bradley','Vo', 'ZA343','714-555-5555','bradleyvo@gmail.com','1122 Dale St, Garden Grove, ZA','BD2394'),
@@ -65,6 +75,12 @@ INSERT INTO Guests VALUES
   (6, 'Noah','Von', 'TG343','714-501-5785','noahvon@gmail.com','1635 Dale St, Garden Grove, ZA','BDJK94'),
   (7, 'Mack','Davis', 'HJ543','714-368-3843','mackdavis@gmail.com','1720 Dale St, Garden Grove, AZA','CF53QA'),
   (8, 'Noah','Tav', 'QA765','714-248-2152','noahtav@gmail.com','1917 Dale St, Garden Grove, TX','TY33FD');
+
+insert into PriorGuests VALUES
+('Julie','Smith','B12','714-999-9999','1122 Dale St, Garden Grove, CA',
+ '2021-02-09', '2021-02-12'),
+ ('Mack','Davis','B2','714-368-3843','1720 Dale St, Garden Grove, AZA',
+ '2021-03-11', '2021-03-21');
 
 INSERT INTO Rooms VALUES
   ('B342', 'King','Yes','Occupied',99.99 ),

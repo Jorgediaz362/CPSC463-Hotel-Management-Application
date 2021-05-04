@@ -360,6 +360,48 @@
                                         ?>
                                     </tbody>
                                 </table>
+                                <h>Prior Guest(s) stays</h>
+                                <br>
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                First Name
+                                            </th>
+                                            <th>
+                                                Last Name
+                                            </th>
+                                            <th>
+                                                Room Number
+                                            </th>
+                                            <th>
+                                                Phone Number
+                                            </th>
+                                            <th>
+                                                Street Address
+                                            </th>
+                                            <th>
+                                                Check In Date
+                                            </th>
+                                            <th>
+                                                Checkout Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            $name = $_POST['search'];
+                                            $select_sql= "SELECT * From PriorGuests as pg 
+                                                          WHERE
+                                                          pg.firstName Like '".$name."'  
+                                                          ";
+                                            $guests = executeQuery($select_sql);
+                                            $guestsArray = tranfertoArray( $guests);
+                                            render_search_array( $guestsArray );
+                                        
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
         
                         </div>
