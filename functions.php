@@ -269,11 +269,14 @@
                 $total_charge = $days * $array[$row]['ratePerDay'];
            
             $balance = $total_charge-$array[$row]['paymentMade'];
+            $cit = '3:00';
+            $cot = '11:00';
+
               echo "
-                <tr class='gradeX'>
-                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
-                    <td>".$array[$row]['checkinDate']."</td>
-                    <td>".$array[$row]['checkoutDate']."</td>
+                 <tr class='gradeX'>
+                    <td>".$row['firstName']." ".$row['lastName']."</td>
+                    <td>".$row['checkinDate']." ". $cit ."</td>
+                    <td>".$row['checkoutDate']." ". $cot ."</td>
                     <td>".$array[$row]['roomType']."</td>
                     <td>".$array[$row]['roomNumber']."</td>
                     <td>".$array[$row]['ratePerDay']."</td>
