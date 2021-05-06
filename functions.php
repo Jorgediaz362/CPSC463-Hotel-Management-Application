@@ -275,8 +275,8 @@
               echo "
                  <tr class='gradeX'>
                     <td>".$row['firstName']." ".$row['lastName']."</td>
-                    <td>".$row['checkinDate']." ". $cit ."</td>
-                    <td>".$row['checkoutDate']." ". $cot ."</td>
+                    <td>".$row['checkinDate']." $cit</td>
+                    <td>".$row['checkoutDate']." $cot</td>
                     <td>".$array[$row]['roomType']."</td>
                     <td>".$array[$row]['roomNumber']."</td>
                     <td>".$array[$row]['ratePerDay']."</td>
