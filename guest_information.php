@@ -322,6 +322,9 @@
                                            <th>
                                                Vehicle License
                                            </th>
+                                           <th> 
+                                                Edit the information
+                                            </th>
 
                                        </tr>
                                    </thead>
