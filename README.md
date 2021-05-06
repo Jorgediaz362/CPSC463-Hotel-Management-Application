@@ -1,10 +1,14 @@
 # CPSC462-Project2
-Team members:
 
-Hoanh Vo hvo123@csu.fullerton.edu
+## Project Website
+* http://ecs.fullerton.edu/~cs431s24/hotel-app/index.html
 
-Jorge Diaz jorgediaz@csu.fullerton.edu
+## Team members:
 
-Yi Wei Lee david83031726@csu.fullerton.edu
+* Hoanh Vo - hvo123@csu.fullerton.edu
 
-Phillip Presuel
+* Jorge Diaz - jorgediaz@csu.fullerton.edu
+
+* Yi Wei Lee - david83031726@csu.fullerton.edu
+
+* Phillip Presuel - phillipp@csu.fullerton.edu
