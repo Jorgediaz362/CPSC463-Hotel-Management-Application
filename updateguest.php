@@ -332,9 +332,9 @@
                                         <?php 
                                               //=================query the datbase get the reservation with range within next 7 days ====================                                          
                                               $select_sql= "SELECT * FROM Guests";
-                                              $guestsinfor = executeQuery($select_sql); //execute the query statement
-                                              $multArrayguestsinfor =  tranfertoArray( $guestsinfor); //put all metadata into multi array
-                                              render_guests_array($multArrayguestsinfor);
+                                              $upguestsinfor = executeQuery($select_sql); //execute the query statement
+                                              $upmultArrayguestsinfor =  tranfertoArray( $upguestsinfor); //put all metadata into multi array
+                                              render_updateguests_array($upmultArrayguestsinfor);
                                             
                                         ?>                                     
                                    </tbody>
