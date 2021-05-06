@@ -228,8 +228,7 @@
                 <td>".$array[$row]['email']."</td>
                 <td>".$array[$row]['stateID']."</td>
                 <td>".$array[$row]['licensePlate']."</td>
-                <input type='button' value='Edit' />
-                                </td>
+                <td><a href='guest_information2.php'>edit</a></td>
                 </tr>      
               ";
         }
