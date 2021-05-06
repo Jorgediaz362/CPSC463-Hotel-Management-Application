@@ -246,7 +246,7 @@
                 <td><input type='text' value=".$array[$row]['email']."></td>
                 <td><input type='text' value=".$array[$row]['stateID']."></td>
                 <td><input type='text' value=".$array[$row]['licensePlate']."></td>
-                <td><a href='guest_information2.php'>update</a></td>
+                <td><a href='guest_information.php'>update</a></td>
                 </tr>      
               ";
         }
