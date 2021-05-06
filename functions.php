@@ -228,7 +228,25 @@
                 <td>".$array[$row]['email']."</td>
                 <td>".$array[$row]['stateID']."</td>
                 <td>".$array[$row]['licensePlate']."</td>
-                <td><a href='guest_information2.php'>edit</a></td>
+                <td><a href='updateguest.php'>edit</a></td>
+                </tr>      
+              ";
+        }
+    }
+
+    //rendering update guests array to webpage======================================================================
+     function render_updateguests_array($array){
+        for($row = 0; $row < count($array); $row++){         
+          echo "
+                 <tr class='gradeX'>
+                <td><input type='text' value=".$array[$row]['firstName']."></td>
+                <td><input type='text' value=".$array[$row]['lastName']."></td>
+                <td><input type='text' value=".$array[$row]['phone']."></td>
+                <td><input type='text' value=".$array[$row]['address']."></td>
+                <td><input type='text' value=".$array[$row]['email']."></td>
+                <td><input type='text' value=".$array[$row]['stateID']."></td>
+                <td><input type='text' value=".$array[$row]['licensePlate']."></td>
+                <td><a href='guest_information2.php'>update</a></td>
                 </tr>      
               ";
         }
@@ -270,13 +288,15 @@
                 $total_charge = $days * $array[$row]['ratePerDay'];
            
             $balance = $total_charge-$array[$row]['paymentMade'];
+            $cit = '3:00';
+            $cot = '11:00';
         
 
               echo "
                  <tr class='gradeX'>
-                    <td>".$row['firstName']." ".$row['lastName']."</td>
-                    <td>".$row['checkinDate']."</td>
-                    <td>".$row['checkoutDate']."</td>
+                    <td>".$array[$row]['firstName']." ".$array[$row]['lastName']."</td>
+                    <td>".$array[$row]['checkinDate']." ".$cit."</td>
+                    <td>".$array[$row]['checkoutDate']." ".$cot."</td>
                     <td>".$array[$row]['roomType']."</td>
                     <td>".$array[$row]['roomNumber']."</td>
                     <td>".$array[$row]['ratePerDay']."</td>
