@@ -228,6 +228,8 @@
                 <td>".$array[$row]['email']."</td>
                 <td>".$array[$row]['stateID']."</td>
                 <td>".$array[$row]['licensePlate']."</td>
+                <input type='button' value='Edit' />
+                                </td>
                 </tr>      
               ";
         }
@@ -269,14 +271,13 @@
                 $total_charge = $days * $array[$row]['ratePerDay'];
            
             $balance = $total_charge-$array[$row]['paymentMade'];
-            $cit = '3:00';
-            $cot = '11:00';
+        
 
               echo "
                  <tr class='gradeX'>
                     <td>".$row['firstName']." ".$row['lastName']."</td>
-                    <td>".$row['checkinDate']." $cit</td>
-                    <td>".$row['checkoutDate']." $cot</td>
+                    <td>".$row['checkinDate']."</td>
+                    <td>".$row['checkoutDate']."</td>
                     <td>".$array[$row]['roomType']."</td>
                     <td>".$array[$row]['roomNumber']."</td>
                     <td>".$array[$row]['ratePerDay']."</td>
