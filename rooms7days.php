@@ -266,16 +266,16 @@
                         <a href="rooms7days.php" class="active-menu"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
-                        <a href="reservations.php"><i class="fa fa-desktop"></i> Your Reservation</a>
-                    </li>                   
+                        <a href="reservations.php"><i class="fa fa-desktop"></i> Reservations</a>
+                    </li>					
                     <li>
                         <a href="housekeeping.php"><i class="fa fa-qrcode"></i> Housekeeping</a>
-                    </li>                                      
+                    </li>                                     
                     <li>
-                        <a href="guest_information.php"><i class="fa fa-edit"></i> Guest Information</a>
+                        <a href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
-                        <a href="current_stay.php"><i class="fa fa-fw fa-file"></i> Guest stay</a>
+                        <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest stay</a>
                     </li>
                     <li>
                         <a href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>

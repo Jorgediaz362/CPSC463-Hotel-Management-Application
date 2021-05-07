@@ -265,7 +265,7 @@
                         <a href="reservations.php"><i class="fa fa-desktop"></i> Reservations</a>
                     </li>					
                     <li>
-                        <a href="housekeeping.php"><i class="fa fa-qrcode"></i> Housekeeping</a>
+                        <a class="active-menu" href="housekeeping.php"><i class="fa fa-fw fa-file"></i> Housekeeping</a>
                     </li>                                      
                     <li>
                         <a href="guest_information.php"><i class="fa fa-edit"></i>Guest Information</a>

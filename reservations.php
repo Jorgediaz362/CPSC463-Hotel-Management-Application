@@ -262,7 +262,7 @@
                         <a href="rooms7days.php"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
-                        <a href="reservations.php"><i class="fa fa-desktop"></i> Reservations</a>
+                        <a href="reservations.php" class="active-menu"><i class="fa fa-table"></i> Reservations</a
                     </li>					
                     <li>
                         <a href="housekeeping.php"><i class="fa fa-qrcode"></i> Housekeeping</a>
