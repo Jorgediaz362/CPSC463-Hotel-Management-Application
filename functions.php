@@ -1,6 +1,6 @@
 <?php
     //enable php to display any error
-    ini_set('display_errors','1');
+    //ini_set('display_errors','1');
     
     //Student Name: Hoanh Vo
     //http://ecs.fullerton.edu/~cs431s24/hotel-app/

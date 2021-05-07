@@ -254,16 +254,16 @@
                         <a href="rooms7days.php"><i class="fa fa-table"></i> Rooms Next 7 Days</a>
                     </li>
                     <li>
-                        <a href="ui-elements.html"><i class="fa fa-desktop"></i> Your Reservation</a>
+                        <a href="reservation.php"><i class="fa fa-desktop"></i> Your Reservation</a>
                     </li>					
                     <li>
-                        <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Housekeeping</a>
+                        <a href="housekeeping.php"><i class="fa fa-qrcode"></i> Housekeeping</a>
                     </li>                                      
                     <li>
-                        <a href="guest_information.html"><i class="fa fa-edit"></i> Guest Information</a>
+                        <a href="guest_information.php"><i class="fa fa-edit"></i> Guest Information</a>
                     </li>
                     <li>
-                        <a href="current_stay.html"><i class="fa fa-fw fa-file"></i> Guest Stay</a>
+                        <a href="current_stay.php"><i class="fa fa-fw fa-file"></i> Guest Stay</a>
                     </li>
                     <li>
                         <a class="active-menu" href="searchguest.php"><i class="fa fa-fw fa-file"></i> Search for a Guest</a>
