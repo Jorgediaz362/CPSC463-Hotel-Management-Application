@@ -1,4 +1,4 @@
-# CPSC462-Project2
+# CPSC463 - Hotel Management Application
 
 ## Project Website
 * http://ecs.fullerton.edu/~cs431s24/hotel-app/index.html
